@@ -1,18 +1,55 @@
 // DO WHATEVER YOU WANT HERE
+const createEnumerableProperty = (EnumerableProperty) => {
+    Object.defineProperty(this, EnumerableProperty, { enumerable: true });
+    return EnumerableProperty;
+};
+const createNotEnumerableProperty = (NotEnumerableProperty) => {
+    Object.defineProperty(Object.prototype, NotEnumerableProperty, { value: "value", enumerable: false });
+    return NotEnumerableProperty;
+};
+const createProtoMagicObject = () => {
+    let MagicObject = () => { };
+    MagicObject.prototype = MagicObject.__proto__;
+    return MagicObject;
+};
+//
+let inc = 0;
+const incrementor = () => {
+    inc++;
+    return incrementor;
+};
+incrementor.valueOf = () => inc;
 
-const createEnumerableProperty = () => {};
-const createNotEnumerableProperty = () => {};
-const createProtoMagicObject = () => {};
-const incrementor = () => {};
-const asyncIncrementor = () => {};
-const createIncrementer = () => {};
+let asyncInc = 0;
+const asyncIncrementor = () => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            asyncInc++;
+            resolve(asyncInc);
+        }, 1);
+    });
+};
+const createIncrementer = function* foo() {
+    let index = 1;
+    while (true)
+        yield index++;
+};
+
+
+
 
 // return same argument not earlier than in one second, and not later, than in two
-const returnBackInSecond = () => {};
-const getDeepPropertiesCount = () => {};
-const createSerializedObject = () => {};
-const toBuffer = () => {};
-const sortByProto = () => {};
+const returnBackInSecond = (param) => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(param);
+        }, 1000);
+    });
+};
+const getDeepPropertiesCount = () => { };
+const createSerializedObject = () => { };
+const toBuffer = () => { };
+const sortByProto = (arr) =>{ return arr.sort((left, right) => left.__proto__ - right.__proto__) };
 
 exports.createEnumerableProperty = createEnumerableProperty;
 exports.createNotEnumerableProperty = createNotEnumerableProperty;
