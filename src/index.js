@@ -1,6 +1,5 @@
 // DO WHATEVER YOU WANT HERE
 const createEnumerableProperty = (EnumerableProperty) => {
-    Object.defineProperty(this, EnumerableProperty, { enumerable: true });
     return EnumerableProperty;
 };
 const createNotEnumerableProperty = (NotEnumerableProperty) => {
@@ -32,7 +31,7 @@ const asyncIncrementor = () => {
 const createIncrementer = function* foo() {
     let index = 1;
     while (true)
-        yield index++;
+        yield  index++;
 };
 
 
@@ -47,7 +46,10 @@ const returnBackInSecond = (param) => {
     });
 };
 const getDeepPropertiesCount = () => { };
-const createSerializedObject = () => { };
+const createSerializedObject = () => { 
+    
+    return JSON.parse(JSON.stringify(null));
+};
 const toBuffer = () => { };
 const sortByProto = (arr) =>{ return arr.sort((left, right) => left.__proto__ - right.__proto__) };
 
